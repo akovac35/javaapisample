@@ -1,0 +1,10 @@
+############################################################
+# Normalize line endings for text files:
+# - on check out, use current OS style line endings
+# - on check in, use Unix style line endings
+############################################################
+*					text=auto
+*.java 				text	eol=auto
+*.sh 				text	eol=lf
+*.sql 				text	eol=lf
+*.dockerignore 		text	eol=lf

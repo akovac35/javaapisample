@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql-server-for-javaspringboot-api
+    environment:
+      SA_PASSWORD: YourStrong@Passw0rd
+      ACCEPT_EULA: Y
+    ports:
+      - 14333:1433
+    command: /bin/bash "/usr/config/cmd.sh"
+    healthcheck:
+      test: [ "CMD", "/usr/config/healthcheck.sh"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - javaspringboot-api-sqlserver-db-data:/var/opt/mssql
+      - ./scripts/sqlserver:/usr/config
+  javaspringboot-api-sqlserver:
+    image: sample/javaspringboot-api
+    container_name: javaspringboot-api-sqlserver
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=sqlserver
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://sql-server;databaseName=JavaSample;trustServerCertificate=True
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=YourStrong@Passw0rd
+    depends_on:
+      sql-server:
+        condition: service_healthy
+volumes:
+  javaspringboot-api-sqlserver-db-data:

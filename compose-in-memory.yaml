@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  javaspringboot-api-in-memory:
+    image: sample/javaspringboot-api
+    container_name: javaspringboot-api-in-memory
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=h2

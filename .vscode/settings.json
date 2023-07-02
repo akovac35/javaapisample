@@ -1,0 +1,17 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+	"java.test.config": [
+		{
+			"name": "spring-boot-h2",
+			"env": 
+			{
+				"spring_profiles_active": "h2"
+			}
+		}
+	],
+	"java.test.defaultConfig": "spring-boot-h2",
+    "[java]": {
+		"editor.formatOnSave": true
+	}
+}
