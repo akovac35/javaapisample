@@ -19,19 +19,17 @@ This project contains a Java Spring Boot API sample. The following is demonstrat
 
 To start the sample, run the following command in solution root:
 
-* `mvn spring-boot:run`
+* ` docker compose -f compose-[in-memory|sqlserver|oracle].yaml up`
 
-Then navigate to: `http://localhost:8080/swagger-ui/index.html`
+Then navigate to `http://localhost:8080/swagger-ui/index.html` and first initialize sample data, including users for authentication. Examine command handler `si.zpiz.sample.infrastructure.initialization_related.InitializeSampleDataHandler` to understand how data is initialized.
 
 Supported users using `password`:
 
 * admin - full access
 * user - not allowed to delete data
-* unauthenticated users - may only initialize data
+* unauthenticated users - may only initialize data or cretae token
 
 Authorization header pattern: `<token>`
-
-Examine command handler `si.zpiz.sample.infrastructure.initialization_related.InitializeSampleDataHandler` to understand how data is initialized.
 
 The following is TODO:
 
@@ -41,15 +39,28 @@ The following is TODO:
 * integration testing using generated .Java client,
 * ...
 
-For development in VS Code install the following plugins:
+## For development in VSCode
+
+Install the following plugins:
 
 * Extension Pack for Java from Microsoft,
 * Spring Boot Extension Pack from VMware,
-* ...
+* Java 20
+* Maven command line
 
-Once plugins are installed, the project can be debugged from Spring Boot Dashboard and tests can be debugged from Testing dashboard.
+Once plugins are installed, the project can be debugged from Spring Boot Dashboard and tests can be debugged from Testing dashboard. The `.vscode` folder contains settings which default to `h2` for running tests and debugging.
 
 Additional commands:
 
-* Run tests with profile: `mvn test '-Dspring.profiles.active=h2'`
-* Run application with profile: `mvn spring-boot:run '-Dspring-boot.run.profiles=h2'`
+* run tests with profile: `mvn test '-Dspring.profiles.active=h2'`
+* run application with profile: `mvn spring-boot:run '-Dspring-boot.run.profiles=h2'` - Maven target has its own parameter to specify active Spring boot profile
+* additional profiles are `oracle` and `sqlserver`
+
+## For development in Eclipse
+
+Install the following plugins:
+
+* Spring Tools 4
+* Project Lombok - https://projectlombok.org/setup/eclipse
+* Java 20 with supported Eclipse 
+* Maven command line
