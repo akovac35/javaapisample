@@ -19,6 +19,7 @@ This project contains a Java Spring Boot API sample. The following is demonstrat
 
 To start the sample, run the following command in solution root:
 
+* `./scripts/build_docker.sh`
 * ` docker compose -f compose-[in-memory|sqlserver|oracle].yaml up`
 
 Then navigate to `http://localhost:8080/swagger-ui/index.html` and first initialize sample data, including users for authentication. Examine command handler `si.zpiz.sample.infrastructure.initialization_related.InitializeSampleDataHandler` to understand how data is initialized.
